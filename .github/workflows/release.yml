@@ -1,0 +1,17 @@
+name: Release
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    container: barichello/godot-ci:4.3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Export (same setup as android.yml)
+        run: echo "Copy the setup+export steps from android.yml, then attach the APK below."
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: build/DURAKA-SONI-GAMES.apk
